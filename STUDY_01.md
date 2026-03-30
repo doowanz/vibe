@@ -102,14 +102,20 @@
 
 탐색기에서 `study_01` 폴더를 선택하고 우클릭 후 터미널에서 열기를 클릭합니다.
 <img width="500" height="490" alt="image" src="https://github.com/user-attachments/assets/35318275-a21a-4746-b221-c34d048c01a6" />
-안되는 경우 Win + R 누르고 cmd 입력 후 엔터
-터미널 열리면 스터디 폴더로 이동 (아래 명령어 복사 붙여넣기 후 엔터)
 ```
 cd Documents\Vibe\study_01
 ```
- 
 
-**5. Claude Code 설치**
+**5. 명령어 실행을 위한 터미널 설정 변경**
+
+터미널에서 아래 명령어 복사해서 붙여넣고 엔터
+```
+Set-ExecutionPolicy RemoteSigned
+```
+
+**6. Claude Code 설치**
+
+터미널에 아래 클로드 설치 명령어 복사 붙여넣고 엔터
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
