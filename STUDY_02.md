@@ -58,12 +58,11 @@ HTML 문서만으로는 **데이터를 저장하거나 불러오는 것**이 불
 - **1회차:** HTML 파일만 있으니 Netlify에 폴더를 그냥 올리면 끝!
 - **2회차~:** 백엔드가 추가되면 파일을 **빌드(build)** 하는 과정이 생기고 배포 방식이 달라져요
 - 그래서 이번엔 **GitHub + Netlify 자동 배포** 방식을 사용할 거예요!
-- 빌드란? 개발자용 언어로 쓴 코드를 브라우저가 이해하는 언어로 번역하는 것
-  
+
 ---
 
 ## 📋 AI에게 표준 규칙 주기 — CLAUDE.md
-백엔드를 만들기 전에 클로드에게 규칙을 알려주기
+
 Claude Code는 프로젝트 폴더 안에 **CLAUDE.md** 파일이 있으면, 대화를 시작할 때마다 그 규칙을 자동으로 읽어요.
 마치 신입 직원에게 사규(社規)를 건네주는 것과 같아요!
 
@@ -71,7 +70,7 @@ Claude Code는 프로젝트 폴더 안에 **CLAUDE.md** 파일이 있으면, 대
 우리 팀의 규칙:
 - Next.js + Tailwind CSS + Supabase를 사용해요
 - 코드에 한글 주석을 달아줘요
-- 보안이 필요한 키는 절대 공개된 곳에 올리면 안 돼요
+- API 키는 절대 GitHub에 올리면 안 돼요
 - main 브랜치 기준으로 개발해요
 ```
 
@@ -112,53 +111,10 @@ Claude Code에 새로 추가된 기능을 맛보고 가요!
 
 터미널에 `/buddy`를 입력하면 대화형 도우미 모드가 켜져요.
 코드를 설명해주거나 다음 단계를 안내해주는 등 더 친근하게 소통할 수 있어요.
-<img height="400" alt="image" src="https://github.com/user-attachments/assets/3ba5f6a6-4c79-451a-a2ca-294a1604cbba" />
 
 ---
 
-## 🗄️ 웹사이트에 DB를 붙여보자 — Supabase
-
-Supabase는 구글 스프레드시트처럼 생긴 데이터베이스예요.
-회원가입, 로그인, 데이터 저장 기능을 코드 몇 줄로 연결할 수 있어요!
-
-### 실습 순서
-
-**1단계. 자기소개 페이지 요청**
-```
-간단한 자기 소개 페이지 만들어줘
-```
-
-**2단계. 로그인 기능 추가 요청**
-```
-Supabase를 사용해서 이메일 + 비밀번호 로그인을 구현하고 싶어
-이메일 인증은 필요 없어
-```
-
-**3단계. Supabase 회원가입**
-1. [https://supabase.com](https://supabase.com) 접속
-2. 무료 회원가입 후 새 프로젝트 생성
-
-**4단계. 연결 정보 Claude에게 전달**
-1. Supabase 대시보드 → 왼쪽 메뉴 **Settings** → **API**
-2. **Project URL**과 **anon public** 키 복사
-3. Claude에게 아래처럼 전달
-```
-Supabase URL은 [복사한 URL]이고, anon key는 [복사한 키]야
-```
-
-**5단계. 로컬에서 실행해보기**
-```
-웹서비스 시작해줘
-```
-
-브라우저에서 아래 주소로 접속해보세요!
-```
-http://localhost:3000
-```
-
----
-
-## 🚀 백엔드가 포함된 웹사이트 공개(배포)하기
+## 🚀 웹사이트 배포하기
 
 ### GitHub가 왜 필요한가요?
 
@@ -200,53 +156,21 @@ github 사용 이메일은 [본인 이메일]이야
 
 ---
 
-## 🔌 MCP — Claude의 손발이 생긴다
-
-MCP(Model Context Protocol)는 Claude가 외부 서비스(Supabase, Notion, GitHub 등)와 **직접 대화**할 수 있게 해주는 연결 고리예요.
-
-### MCP 없을 때 vs 있을 때
-
-```
-[MCP 없을 때]
-Claude → SQL 코드 생성 → 사람이 Supabase에 직접 붙여넣기
-
-[MCP 있을 때]
-Claude → Supabase에 직접 테이블 생성! (사람 개입 없음)
-```
-
-### 시연: Supabase로 방명록 만들기
-
-강사가 두 가지 방법을 비교해서 보여줄 거예요.
-MCP가 연결되면 Claude가 얼마나 달라지는지 직접 눈으로 확인해보세요!
-
-### MCP 연결 방법 (미리보기)
-
-Claude Code 설정에 아래 내용을 추가하면 돼요.
-```json
-{
-  "mcpServers": {
-    "supabase": {
-      "command": "npx",
-      "args": ["@supabase/mcp-server-supabase@latest", "--access-token", "YOUR_TOKEN"]
-    }
-  }
-}
-```
-
-> 다음 회차에서 직접 설정해볼 예정이에요!
+시간되면 DB 붙이자
+아니면 MCP
 
 ---
 
-## 🎁 오늘의 과제: "로그인 되는 내 사이트 완성하기"
+
+## 🎁 오늘의 과제: "내 사이트 GitHub에 올리고 배포하기"
 
 ### 미션
-- Supabase 로그인 기능이 달린 자기소개 페이지 완성하기
-- GitHub에 올리고, Netlify로 배포해서 URL 제출하기
-- 단톡방에 URL 공유하고 다른 팀원 페이지에 방명록 남겨보기 💬
+- Claude Code로 자기소개 페이지 만들기
+- GitHub에 올리고 Netlify로 배포해서 URL 제출하기
+- 단톡방에 URL 공유하고 서로 구경해보기 👀
 
 ---
 
 ## 🪄 3회차 스터디 주제
-- AI에게 똑똑하게 일 시키는 법 — PRD & PLAN 모드
-- 외부 API 연동해보기 (카카오 지도, 날씨 API 등)
+- DB 연동해보기 — Supabase로 데이터 저장하기
 - MCP 직접 연결해보기
